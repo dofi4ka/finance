@@ -1,6 +1,5 @@
-import time
-
 from flask import Blueprint, request
+from datetime import datetime
 
 from utils import *
 from models import Transactions, db
@@ -17,26 +16,23 @@ def add_transaction():
     category = data.get('category')
 
     # авторизация
-    if token_decode(token) != user_id:
-        return response(False, "Invalid token")
+    check_token(user_id, token)
 
-    new_transaction = Transactions(user_id=user_id, amount=amount, category=category, timestamp=time.time())
+    new_transaction = Transactions(user_id=user_id, amount=amount, category=category, timestamp=datetime.utcnow())
     db.session.add(new_transaction)
     db.session.commit()
 
     return response(True)
 
-
 # Получаем список транзакций пользователя
-@transactions_api.route('/get', methods=['GET'])
+@transactions_api.route('/get', methods=['POST'])
 def get_transactions():
     data = request.get_json()
     user_id = data.get('user_id')
     token = data.get('token')
 
     # авторизация
-    if token_decode(token) != user_id:
-        return response(False, "Invalid token")
+    check_token(user_id, token)
 
     transactions = Transactions.query.filter_by(user_id=user_id).all()
     transaction_list = [

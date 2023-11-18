@@ -1,8 +1,7 @@
-from flask import Blueprint, request
-
-from utils import *
+from flask import Blueprint, request, jsonify
 import hashlib
 from models import Users, Friends, db
+from utils import response, token_encode, check_token
 
 users_api = Blueprint('users_api', __name__)
 
@@ -15,8 +14,7 @@ def hash_password(password):
 
 def add_user(username, password, email, name):
     password_hash = hash_password(password)
-    new_user = Users(username=username, password=password_hash, email=email,
-                     name=name)
+    new_user = Users(username=username, password=password_hash, email=email, name=name)
     db.session.add(new_user)
     db.session.commit()
 
@@ -32,13 +30,14 @@ def register():
 
     username_query = Users.query.filter_by(username=username).first()
     email_query = Users.query.filter_by(email=email).first()
+
     if not username_query and not email_query:
         add_user(username, password, email, name)
         return response(True)
     elif email_query:
-        return response(False, "Email already taken")
+        return response(False, "Email уже занят!")
     else:
-        return response(False, "Username already taken")
+        return response(False, "Username уже занят!")
 
 
 # Вход и получение токена
@@ -49,11 +48,11 @@ def login():
     password = data.get('password')
 
     password_hash = hash_password(password)
-    user = Users.query.filter_by(username=username,
-                                 password=password_hash).first()
+    user = Users.query.filter_by(username=username, password=password_hash).first()
+
     if user:
         token = token_encode(user.user_id)
-        return response(True, data={'token': token})
+        return response(True, "Ok", data={'user_id': user.user_id, 'token': token}), 200
     else:
         return response(False, "Invalid password or username"), 401
 
@@ -62,7 +61,40 @@ def login():
 @users_api.route('/get_users', methods=['GET'])
 def get_users():
     users = Users.query.all()
-    user_list = [
-        {'id': user.user_id, 'username': user.username, 'email': user.email,
-         'name': user.name} for user in users]
+    user_list = [{'id': user.user_id, 'username': user.username, 'email': user.email, 'name': user.name} for user in users]
     return jsonify({'users': user_list})
+
+@users_api.route('/head', methods=['GET'])
+def get_head():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    token = data.get('token')
+
+    # авторизация
+    check_token(user_id, token)
+
+    user = Users.query.filter_by(user_id=user_id).first_or_404()
+    return response(True, data={
+        'name': user.name,
+        'username': user.username,
+    })
+
+
+@users_api.route('/profile', methods=['POST'])
+def get_profile():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    token = data.get('token')
+
+    # авторизация
+    check_token(user_id, token)
+
+    user = Users.query.filter_by(user_id=user_id).first_or_404()
+    return response(True, data={
+        'name': user.name,
+        'username': user.username,
+        'email': user.email,
+    })
+
+
+
