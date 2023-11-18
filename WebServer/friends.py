@@ -45,7 +45,9 @@ def get_friends():
         return response(False, "Отсутствует user_id или token")
 
     # авторизация
-    check_token(user_id, token)
+    r = check_token(user_id, token)
+    if r:
+        return r
 
     # Запрос списка друзей
     friends = (

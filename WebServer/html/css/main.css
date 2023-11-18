@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  --main-color1: #1C2657;
+  --main-color2: #7957C2;
+  margin: 0;
+  background: var(--main-color2);
+}
+
+.svg {
+    filter: drop-shadow(4px 4px 4px black);
+}
+
+span {
+    color: white;
+    font-family: Inter;
+    font-size: 50px;
+    text-shadow: 4px 4px 4px black;
+}
+
+header {
+  width: 100%;
+  height: 199px;
+  background: var(--main-color1);
+  position: fixed;
+  z-index: 4;
+  display: flex;
+}
+.mini-profile {
+  position: relative;
+  width: calc(100% - 199px - 32px);
+  top: 32px;
+  height: 134px;
+}
+.mini-profile .avatar {
+  position: absolute;
+  width: 134px;
+  height: 134px;
+  right: 0px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 4px 0px black;
+}
+.mini-profile span {
+  position: absolute;
+  width: calc(100% - 134px - 32px);
+  height: 50%;
+  right: calc(134px + 32px);
+  border-radius: 50%;
+  text-align: end;
+}
+.mini-profile .username {
+  top: 50%;
+  font-size: 40px;
+}
+.mini-profile .name {
+    font-size: 50px;
+}
+.menu-button {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 199px;
+    height: 199px;
+}
+.menu-button img {
+    position: relative;
+    top: 60px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+  width: 100%;
+  height: 199px;
+  background: var(--main-color1);
+  position: fixed;
+  bottom: 0px;
+  z-index: 4;
+  display: flex;
+}
+.navigate-button {
+    position: relative;
+    width: 20%;
+
+}
+.navigate-button img {
+    position: relative;
+    top: 60px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+#selector {
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    transition: left 150ms;
+}
+#selector img {
+    position: relative;
+    top: 160px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settings-side-panel {
+    position: fixed;
+    z-index: 6;
+    background: var(--main-color1);
+    transition: all 150ms;
+    top: 0px;
+    left: -900px;
+    height: 100vh;
+    width: 900px;
+}
+.profile-side-panel {
+    position: fixed;
+    z-index: 6;
+    background: var(--main-color1);
+    transition: all 150ms;
+    top: 0px;
+    right: -900px;
+    height: 100vh;
+    width: 900px;
+}
+.screen-blur {
+    position: fixed;
+    z-index: 5;
+    background: black;
+    transition: all 150ms;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    display: none;
+}
+
+.settings-side-panel.opened {
+    left: 0px;
+}
+.profile-side-panel.opened {
+    right: 0px;
+}
+.screen-blur.opened {
+    opacity: 0.4;
+    display: block;
+}
+
+.app {
+    position: fixed;
+    top: 199px;
+}
+.app .page {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transition: all 150ms;
+}
+
+.app #home.page {
+}
