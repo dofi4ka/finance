@@ -55,4 +55,3 @@ class Targets(db.Model):
     price = db.Column(db.Float, nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    user = relationship('Users', back_populates='targets')

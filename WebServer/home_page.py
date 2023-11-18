@@ -1,12 +1,11 @@
 from flask import Blueprint, request, jsonify
-import hashlib
-from models import Users, Transactions, Targets, db
+from models import Users, Transactions, Targets
 from utils import response, token_encode, check_token
 
-from app import app
+home_page = Blueprint('home_page', __name__)
 
 
-@app.route('/home', methods=['POST'])
+@home_page.route('/home', methods=['POST'])
 def get_home_page():
     data = request.get_json()
     user_id = data.get('user_id')
