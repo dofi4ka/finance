@@ -6,22 +6,16 @@ function login() {
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
 
-    fetch('/users/login', {
-        method: 'POST',
-        headers: {
-            'Access': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({'username': username, 'password': password})
-    }).then((response) => {
-        if (response.ok) {
-            var data = response.json();
-            var token = data["data"]["token"];
-            console.log(token);
-        } else {
-            alert("Неправильные данные входа");
-        }
-    })
+    var url = new URL("/users/login");
+    url.searchParams.append('username', username);
+    url.searchParams.append('password', password);
+
+    r = fetch(url);
+    if (r.ok) {
+        console.log(r.json())
+    } else {
+        alert("Invalid password or username");
+    }
 }
 
 function register() {
@@ -30,21 +24,17 @@ function register() {
     var email = document.getElementById('register-email').value;
     var password = document.getElementById('register-password').value;
 
-    fetch('/users/register', {
-        method: 'POST',
-        headers: {
-            'Access': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({'name': name, 'email': email,
-            'username': username, 'password': password})
-    }).then((response) => {
-        if (response.ok) {
-            var data = response.json();
-            var token = data["data"]["token"];
-            console.log(token);
-        } else {
-            alert("Email or username already taken");
-        }
-    })
+    var url = new URL("/users/register");
+    url.searchParams.append('name', name);
+    url.searchParams.append('username', username);
+    url.searchParams.append('email', email);
+    url.searchParams.append('password', password);
+
+    r = fetch(url);
+    if (r.ok) {
+        console.log(r.json())
+        // ...
+    } else {
+        alert("Email or username already taken");
+    }
 }
