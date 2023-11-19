@@ -1,7 +1,7 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, redirect
 import hashlib
 from models import Users, Friends, db
-from utils import response, token_encode, check_token
+from utils import response, token_encode, check_token, token_decode
 
 users_api = Blueprint('users_api', __name__)
 
@@ -22,7 +22,7 @@ def add_user(username, password, email, name):
 # Регистрация и получение токена
 @users_api.route('/register', methods=['POST'])
 def register():
-    data = request.json()
+    data = request.get_json()
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
@@ -44,7 +44,7 @@ def register():
 # Вход и получение токена
 @users_api.route('/login', methods=['POST'])
 def login():
-    data = request.json()
+    data = request.get_json()
     username = data.get('username')
     password = data.get('password')
 
@@ -65,7 +65,7 @@ def get_users():
     user_list = [{'id': user.user_id, 'username': user.username, 'email': user.email, 'name': user.name} for user in users]
     return jsonify({'users': user_list})
 
-@users_api.route('/head', methods=['GET'])
+"""@users_api.route('/head', methods=['GET'])
 def get_head():
     data = request.get_json()
     user_id = data.get('user_id')
@@ -95,7 +95,7 @@ def get_profile():
         'name': user.name,
         'username': user.username,
         'email': user.email,
-    })
+    })"""
 
 
 

@@ -25,25 +25,25 @@ function login() {
     var username = document.getElementById('login-username').value;
     var password = document.getElementById('login-password').value;
 
-    var url = new URL("/users/login");
-    url.searchParams.append('username', username);
-    url.searchParams.append('password', password);
-
-    r = fetch(url);
-    if (r.ok) {
-        console.log(r.json())
-    } else {
-        alert("Invalid password or username");
-    }
+    postData("/users/login", {username: username, password: password}).then((data) => {
+        if (data["status"]) {
+        set_token(data["data"]["token"]);
+        window.location.replace("/");
+        } else alert(data['message'])
+    });
 }
 
 function register() {
     var name = document.getElementById('register-name').value;
+    var surname = document.getElementById('register-surname').value;
     var username = document.getElementById('register-username').value;
     var email = document.getElementById('register-email').value;
     var password = document.getElementById('register-password').value;
 
-    postData("/users/register", { name: name, username: username, email: email, password: password }).then((data) => {
-  console.log(data);
-});
+    postData("/users/register", {name: name, surname: surname, username: username, email: email, password: password}).then((data) => {
+        if (data["status"]) {
+        set_token(data["data"]["token"]);
+        window.location.replace("/");
+        } else alert(data['message'])
+    });
 }

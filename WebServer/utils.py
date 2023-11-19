@@ -6,20 +6,19 @@ def response(status, message=None, data=None):
     return jsonify({'status': status, 'message': message, 'data': data})
 
 
-secret = "secret key"
+secret = "83pw409867jusep3508uyks4905uyh90reopd;yk;904d5puik;d4-96p5kpfdhdkjlkfcgjihgert"
 
 
 def token_encode(user_id):
     return jwt.encode({'user_id': user_id}, secret, algorithm='HS256')
 
 
-def token_decode(
-        token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1fQ.Yyik3alxPaYrd-pYQ5cKLoAkUyx6xcUZQkeVDRAQYzs'):
+def token_decode(token):
     try:
         message = jwt.decode(token, key=secret, algorithms=["HS256"])
         return message["user_id"]
     except Exception as e:
-        print(e)
+        return None
 
 
 def check_token(user_id, token):

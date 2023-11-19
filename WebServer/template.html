@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <script src="/static/js/main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<header>
+    <div class="menu-button" onclick="toggle_menu('settings-side-panel')">
+        <img class="svg" src="/static/images/menu-button.svg" title="">
+    </div>
+    <div class="mini-profile" onclick="toggle_menu('profile-side-panel')">
+        <img class="avatar" src="/static/images/mini-avatar.png" alt="avatar">
+        <span class="name">{{name}}</span>
+        <span class="username">{{username}}</span>
+    </div>
+    
+</header>
+<div class="screen-blur" id="screen-blur" onclick="close_all()"></div>
+<div class="settings-side-panel" id="settings-side-panel">
+    <div class="menu-button" style="left: 700px;">
+        <img class="svg" src="/static/images/menu-button.svg" onclick="toggle_menu('settings-side-panel')" title="">
+    </div>
+</div>
+<div class="profile-side-panel" id="profile-side-panel">
+
+</div>
+
+<div class="app">
+    <div class="page" style="left: 0%;" id="home">
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Непотраченные деньги</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>{{balance}}</span>
+            </div>
+            <div style="display: flex; gap: 3.7vw; padding-top: 45px;">
+                <button type="button"><span style="font-size: 45px;">Добавить доход</span></button>
+                <button type="button"><span style="font-size: 45px;">Добавить расход</span></button>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding" style="padding-bottom: 20px;">
+
+            <div class="inner-header">
+                <span>Быстрые действия</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            {% for fast_action in fast_actions %}
+            <button type="button" onclick="{{fast_action.action}}">
+                <span>{{fast_action.name}}</span>
+            </button>
+            {% endfor %}
+            <button type="button">
+                <img class="svg" style="margin-right: 10px;" src="/static/images/miniplus.svg">
+                <span style="margin-left: 10px;">Добавить быстрое действие</span>
+            </button>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Цели</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            {% for target in targets %}
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">{{target.name}}</span>
+                <span style="font-size: 70px;">{{target.progress}}</span>
+            </button>
+            {% endfor %}
+            <button type="button">
+                <img class="svg" style="margin-right: 10px;" src="/static/images/miniplus.svg">
+                <span style="margin-left: 10px;">Добавить Цель</span>
+            </button>
+        </div>
+
+    </div>
+    <div class="page" style="left: 100%;" id="graph">
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Анализ финансов</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+
+            <div class="graph-area">
+                {% for graph in graphs %}
+                <div class="graph">
+                    <div class="{{graph.class}}">
+                        <div class="f" style="height: {{graph.h1}}%;"></div>
+                        <div class="l" style="height: {{graph.h2}}%;"></div>
+                        <div class="m" style="height: {{graph.h1}}%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>{{graph.month}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding" style="height: 1500px;">
+            <div class="inner-header">
+                <span>Ваши доходы и расходы по категориям</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            <div style="display: flex; gap: 3.7vw">
+                <div style="width: 50%; height: 1200px; display: flex; flex-direction: column;">
+                    {% for income in c_incomes %}
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">{{income.category}}</span>
+                        <span style="font-size: 40px; color: #44FE02; font-weight: 700;">{{income.amount}}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div style="width: 50%; height: 1200px; display: flex; flex-direction: column;">
+                    {% for expense in c_expenses %}
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">{{expense.category}}</span>
+                        <span style="font-size: 40px; color: #FF0101; font-weight: 700;">{{expense.amount}}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="page" style="left: 200%;" id="personal-suggestions">
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding" style="height: 480px;">
+            <div class="inner-header">
+                <span>Оценка грамотности</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>{{ratio_str}}</span>
+            </div>
+            <div style="padding-top: 45px;">
+                <div class="ratio-bar-background"></div>
+                <div class="ratio-bar" style="width: {{ratio_bar}}px;"></div>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding">
+
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Финансовая грамотность оценивается на основе ваших расходов. Следите за ними и придерживайтесь общих советов распоряжения средствами.</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Личные советы</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            {% for personal_suggestion in personal_suggestions %}
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">{{personal_suggestion}}</span>
+            </button>
+            {% endfor $}
+        </div>
+
+    </div>
+    <div class="page" style="left: 300%;" id="investment-portfolio">
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding" style="height: 340px;">
+            <div class="inner-header">
+                <span>Всего вы инвестировали</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>{{amount_investments}}</span>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding">
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Инвестируйте с умом, не вкладывайте все деньги в один сектор, разделяйте инвестиции в разные компании.</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            {% if is_followed %}
+            <div class="inner-header">
+                <span>Отслеживаемые акции</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            {% else %}
+            {% endif %}
+
+            <div class="inner-header">
+                <span>Популярные акции</span>
+                <img class="svg" src="/static/images/divider.svg">
+            </div>
+
+            {% for investment in popular investments %}
+            <div class="company">
+                <div class="logo">{{investment.logo}}</div>
+                <div class="info">
+                    <span class="name">{{investment.name}}</span>
+                    <span class="changes" style="color: #44FE02;">{{investment.change}}</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="page" style="left: 400%;" id="rating">
+
+        <div class="blue padding">
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Покажите своим друзьям как грамотно вы распоряжаетесь средствами</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="purple padding">
+                <div class="inner-header">
+                    <span>Рейтинг друзей</span>
+                    <img class="svg" src="/static/images/divider.svg">
+                </div>
+            </div>
+            {% for friend in popular friends %}
+            <div class="company">
+                <div class="logo">{{friend.logo}}</div>
+                <div class="info">
+                    <span class="name">{{friend.name}}</span>
+                    <span class="changes" style="color: #44FE02;">{{friend.ratio_str}}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="navigate-button" onclick="select(0);">
+        <img class="svg" src="/static/images/home.svg" title="">
+    </div>
+    <div class="navigate-button" onclick="select(1);">
+        <img class="svg" src="/static/images/graph.svg" title="">
+    </div>
+    <div class="navigate-button" onclick="select(2);">
+        <img class="svg" src="/static/images/personal-suggestions.svg" title="">
+    </div>
+    <div class="navigate-button" onclick="select(3);">
+        <img class="svg" src="/static/images/investment-portfolio.svg" title="">
+    </div>
+    <div class="navigate-button" onclick="select(4);">
+        <img class="svg" src="/static/images/rating.svg" title="">
+    </div>
+    <div id="selector">
+        <img class="svg" style="left: 0%;" src="/static/images/selector-line.svg" title="">
+    </div>
+</footer>
+
+</body>
+</html>
