@@ -10,20 +10,20 @@ transactions_api = Blueprint('transactions_api', __name__)
 # Добавляем новую транзакцию
 @transactions_api.route('/add', methods=['POST'])
 def add_transaction():
-    if "Authorisation" in request.headers:
-        if token_decode(request.headers):
-            return redirect("/")
+    token = request.cookies.get("Authorisation")
+    if token:
+        user_id = token_decode(token)
+        if user_id:
+            data = request.get_json()
+            amount = data.get('amount')
+            category = data.get('category')
 
-    data = request.get_json()
-    user_id = data.get('user_id')
-    amount = data.get('amount')
-    category = data.get('category')
+            new_transaction = Transactions(user_id=user_id, amount=amount, category=category, timestamp=datetime.utcnow())
+            db.session.add(new_transaction)
+            db.session.commit()
 
-    new_transaction = Transactions(user_id=user_id, amount=amount, category=category, timestamp=datetime.utcnow())
-    db.session.add(new_transaction)
-    db.session.commit()
-
-    return response(True)
+            return response(True), 200
+    return response(False), 403
 
 
 # Получаем список транзакций пользователя

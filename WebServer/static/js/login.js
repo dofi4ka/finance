@@ -9,6 +9,7 @@ async function postData(url = "", data = {}) {
     headers: {
       "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
+      "Cookies": document.cookie
     },
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *client
@@ -44,6 +45,28 @@ function register() {
         if (data["status"]) {
         set_token(data["data"]["token"]);
         window.location.replace("/");
+        } else alert(data['message'])
+    });
+}
+
+function income() {
+    var amount = document.getElementById('income-bottom-panel-amount').value;
+    var category = document.getElementById('income-bottom-panel-category').value;
+
+    postData("/transactions/add", {amount: amount, category: category}).then((data) => {
+        if (data["status"]) {
+            window.location.reload();
+        } else alert(data['message'])
+    });
+}
+
+function expose() {
+    var amount = -document.getElementById('income-bottom-panel-amount').value;
+    var category = document.getElementById('income-bottom-panel-category').value;
+
+    postData("/transactions/add", {amount: amount, category: category}).then((data) => {
+        if (data["status"]) {
+            window.location.reload();
         } else alert(data['message'])
     });
 }

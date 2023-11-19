@@ -29,6 +29,20 @@
 
 </div>
 
+<div class="input-bottom-panel" id="income-bottom-panel">
+    <input type="number" id="income-bottom-panel-amount" placeholder="Сумма"/>
+    <input type="text" id="income-bottom-panel-category" placeholder="Категория"/>
+    <button class="send-button" type="button" onclick="income()">Отправить</button>
+</div>
+<div class="input-bottom-panel" id="expense-bottom-panel">
+    <input type="number" id="expense-bottom-panel-amount" placeholder="Сумма"/>
+    <input type="text" id="expense-bottom-panel-category" placeholder="Категория"/>
+    <button class="send-button" type="button" onclick="expense()">Отправить</button>
+</div>
+<div class="input-bottom-panel" id="target-bottom-panel">
+
+</div>
+
 <div class="app">
     <div class="page" style="left: 0%;" id="home">
 
@@ -43,8 +57,8 @@
                 <span>{{balance}}</span>
             </div>
             <div style="display: flex; gap: 3.7vw; padding-top: 45px;">
-                <button type="button"><span style="font-size: 45px;">Добавить доход</span></button>
-                <button type="button"><span style="font-size: 45px;">Добавить расход</span></button>
+                <button type="button" onclick="toggle_menu('income-bottom-panel')"><span style="font-size: 45px;">Добавить доход</span></button>
+                <button type="button" onclick="toggle_menu('expense-bottom-panel')"><span style="font-size: 45px;">Добавить расход</span></button>
             </div>
         </div>
 

@@ -11,6 +11,34 @@ body {
     filter: drop-shadow(4px 4px 4px black 50%);
 }
 
+input {
+    width: calc(100% - 60px);
+    height: 100px;
+    background-color: white;
+    color: black;
+    font-family: Inter;
+    font-size: 50px;
+    border-radius: 30px;
+    border: none;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.send-button {
+    width: 100%;
+    height: 120px;
+    background-color: white;
+    color: black;
+    font-family: Inter;
+    font-size: 65px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 span {
     color: white;
     font-family: Inter;
@@ -127,6 +155,16 @@ footer {
     height: 100vh;
     width: 900px;
 }
+.input-bottom-panel {
+    border-radius: 30px 30px 0 0;
+    position: fixed;
+    z-index: 6;
+    background: var(--main-color1);
+    transition: bottom 150ms;
+    bottom: -900px;
+    height: 900px;
+    width: 100vw;
+}
 .screen-blur {
     position: fixed;
     z-index: -1;
@@ -142,6 +180,9 @@ footer {
 }
 .profile-side-panel.opened {
     right: 0px;
+}
+.input-bottom-panel.opened {
+    bottom: 0px;
 }
 .screen-blur.opened {
     z-index: 5;

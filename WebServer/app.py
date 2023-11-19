@@ -10,7 +10,7 @@ from finance_page import finance_api
 from page_3 import page_3
 from invest_page import invest_page
 
-from models import db, Users, Transactions
+from models import db, Users, Transactions, Targets
 
 app = Flask(__name__)
 CORS(app)
@@ -52,16 +52,20 @@ def index():
                         return
                 base.append({"category": category, "amount": amount})
 
+            amount_investments = 0
             c_incomes = []
             incomes = 0
             c_expenses = []
             expenses = 0
             for transaction in transactions:
+
                 balance += transaction.amount
                 if transaction.amount > 0:
                     incomes += transaction.amount
                     c_add(c_incomes, transaction.amount, transaction.category)
                 else:
+                    if transaction.category == "Инвестиции":
+                        amount_investments -= transaction.amount
                     expenses -= transaction.amount
                     c_add(c_expenses, -transaction.amount, transaction.category)
 
@@ -72,10 +76,14 @@ def index():
             else:
                 h1, h2 = 4, 4
 
+            targets = Targets.query.filter_by(user_id=user_id).all()
+            targets_data = [
+                {'name': targets.name, 'progress': f"{targets.amount}₽/{targets.price}₽"} for target in targets]
+
             return render_template('index.html',
                                    name=user.name,
                                    username=user.username,
-                                   balance=balance,
+                                   balance=f"{balance}₽",
                                    fast_actions=[],  # [{"name": None, "action": None}],
                                    targets=[],  # [{"name": None, "progress": None}],
                                    graphs=[
@@ -83,7 +91,7 @@ def index():
                                        {"class": "graph-income", "h1": 4, "h2": 4, "month": "Август"},
                                        {"class": "graph-income", "h1": 4, "h2": 4, "month": "Сентябрь"},
                                        {"class": "graph-income", "h1": 4, "h2": 4, "month": "Октябрь"},
-                                       {"class": "graph-income" if balance > 0 else "graph-expense",
+                                       {"class": "graph-income" if balance >= 0 else "graph-expense",
                                         "h1": h1, "h2": h2, "month": "Ноябрь"}
                                    ],
                                    c_incomes=c_incomes,
@@ -93,6 +101,7 @@ def index():
                                    personal_suggestions=["Мы пока ничего не можем предложить"],
                                    is_followed=False,
                                    popular_investments=[{"logo": None, "name": None, "change": None}],
+                                   amount_investments=f"{balance}₽",
                                    friends=[{"logo": None, "name": None, "ratio_str": None}]
                                    )
     return redirect("/login")
