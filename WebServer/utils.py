@@ -6,7 +6,7 @@ def response(status, message=None, data=None):
     return jsonify({'status': status, 'message': message, 'data': data})
 
 
-secret = "83pw409867jusep3508uyks4905uyh90reopd;yk;904d5puik;d4-96p5kpfdhdkjlkfcgjihgert"
+secret = "secret key"
 
 
 def token_encode(user_id):
@@ -19,15 +19,6 @@ def token_decode(token):
         return message["user_id"]
     except Exception as e:
         return None
-
-
-def check_token(user_id, token):
-    try:
-        if int(token_decode(token)) != int(user_id):
-            return response(False, "Invalid token")
-    except Exception as e:
-        return response(False, "Invalid token")
-    return response(True, "Ok")
 
 
 def get_company_price(company_name):

@@ -1,7 +1,7 @@
-from flask import Blueprint, request, jsonify, redirect
+from flask import Blueprint, request, jsonify
 import hashlib
-from models import Users, Friends, db, Targets
-from utils import response, token_encode, check_token, token_decode
+from models import Users, db
+from utils import response, token_encode
 
 users_api = Blueprint('users_api', __name__)
 
@@ -58,71 +58,3 @@ def login():
         return response(True, "Ok", data={'user_id': user.user_id, 'token': token}), 200
     else:
         return response(False, "Invalid password or username"), 401
-
-
-"""@users_api.route('/add-target', methods=['POST'])
-def register():
-    token = request.cookies.get("Authorisation")
-    if token:
-        user_id = token_decode(token)
-        if user_id:
-            data = request.get_json()
-            name = data.get('name')
-            price = data.get('price')
-
-            target = Targets(user_id=user_id, name=name, amount=0, price=price)
-
-            username_query = Users.query.filter_by(username=username).first()
-            email_query = Users.query.filter_by(email=email).first()
-
-            if not username_query and not email_query:
-                add_user(username, password, email, name)
-                user = Users.query.filter_by(email=email, username=username).first()
-                return response(True, data={'token': token_encode(user.user_id)})
-            elif email_query:
-                return response(False, "Email уже занят!")
-            else:
-                return response(False, "Username уже занят!")
-"""
-
-# Получаем список пользователей. Функция временная на период теста
-@users_api.route('/get_users', methods=['GET'])
-def get_users():
-    users = Users.query.all()
-    user_list = [{'id': user.user_id, 'username': user.username, 'email': user.email, 'name': user.name} for user in users]
-    return jsonify({'users': user_list})
-
-"""@users_api.route('/head', methods=['GET'])
-def get_head():
-    data = request.get_json()
-    user_id = data.get('user_id')
-    token = data.get('token')
-
-    # авторизация
-    check_token(user_id, token)
-
-    user = Users.query.filter_by(user_id=user_id).first_or_404()
-    return response(True, data={
-        'name': user.name,
-        'username': user.username,
-    })
-
-
-@users_api.route('/profile', methods=['POST'])
-def get_profile():
-    data = request.get_json()
-    user_id = data.get('user_id')
-    token = data.get('token')
-
-    # авторизация
-    check_token(user_id, token)
-
-    user = Users.query.filter_by(user_id=user_id).first_or_404()
-    return response(True, data={
-        'name': user.name,
-        'username': user.username,
-        'email': user.email,
-    })"""
-
-
-

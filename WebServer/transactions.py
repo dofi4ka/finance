@@ -29,16 +29,13 @@ def add_transaction():
 # Получаем список транзакций пользователя
 @transactions_api.route('/get', methods=['POST'])
 def get_transactions():
-    if "Authorisation" in request.headers:
-        if token_decode(request.headers):
-            return redirect("/")
-
-    data = request.get_json()
-    user_id = data.get('user_id')
-
-    transactions = Transactions.query.filter_by(user_id=user_id).all()
-    transaction_list = [
-        {'user_id': transaction.user_id, 'amount': transaction.amount,
-         'category': transaction.category, 'timestamp': transaction.timestamp} for
-        transaction in transactions]
-    return response(True, data={'transactions': transaction_list})
+    token = request.cookies.get("Authorisation")
+    if token:
+        user_id = token_decode(token)
+        if user_id:
+            transactions = Transactions.query.filter_by(user_id=user_id).all()
+            transaction_list = [
+                {'user_id': transaction.user_id, 'amount': transaction.amount,
+                 'category': transaction.category, 'timestamp': transaction.timestamp} for
+                transaction in transactions]
+            return response(True, data={'transactions': transaction_list})

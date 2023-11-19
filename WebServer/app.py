@@ -2,13 +2,8 @@ from flask import Flask, send_file, request, redirect, render_template
 from flask_cors import CORS
 
 from utils import token_decode
-from home_page import home_page
 from users import users_api
-from friends import friends_api
 from transactions import transactions_api
-from finance_page import finance_api
-from page_3 import page_3
-from invest_page import invest_page
 
 from models import db, Users, Transactions, Targets
 
@@ -16,13 +11,8 @@ app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
 db.init_app(app)
-app.register_blueprint(home_page)
 app.register_blueprint(users_api, url_prefix="/users")
-app.register_blueprint(friends_api, url_prefix="/friends")
 app.register_blueprint(transactions_api, url_prefix="/transactions")
-app.register_blueprint(finance_api)
-app.register_blueprint(page_3)
-app.register_blueprint(invest_page)
 
 
 @app.route('/login', methods=['GET'])
