@@ -72,7 +72,7 @@ def index():
             else:
                 h1, h2 = 4, 4
 
-            return render_template('template.html',
+            return render_template('index.html',
                                    name=user.name,
                                    username=user.username,
                                    balance=balance,
