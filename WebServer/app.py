@@ -1,7 +1,7 @@
 from flask import Flask, send_file, request, redirect, render_template
 from flask_cors import CORS
 
-from WebServer.utils import token_decode
+from utils import token_decode
 from home_page import home_page
 from users import users_api
 from friends import friends_api
