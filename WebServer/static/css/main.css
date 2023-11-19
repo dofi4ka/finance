@@ -34,9 +34,7 @@ input {
     border: none;
     font-weight: 700;
     margin: 70px;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: center;
+    display: flex;
 }
 
 span {
