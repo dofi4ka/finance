@@ -48,25 +48,3 @@ function register() {
         } else alert(data['message'])
     });
 }
-
-function income() {
-    var amount = document.getElementById('income-bottom-panel-amount').value;
-    var category = document.getElementById('income-bottom-panel-category').value;
-
-    postData("/transactions/add", {amount: amount, category: category}).then((data) => {
-        if (data["status"]) {
-            window.location.reload();
-        } else alert(data['message'])
-    });
-}
-
-function expose() {
-    var amount = -document.getElementById('income-bottom-panel-amount').value;
-    var category = document.getElementById('income-bottom-panel-category').value;
-
-    postData("/transactions/add", {amount: amount, category: category}).then((data) => {
-        if (data["status"]) {
-            window.location.reload();
-        } else alert(data['message'])
-    });
-}
