@@ -33,7 +33,8 @@ def register():
 
     if not username_query and not email_query:
         add_user(username, password, email, name)
-        return response(True)
+        user = Users.query.filter_by(email=email, username=username).first()
+        return response(True, data={'token': token_encode(user.user_id)})
     elif email_query:
         return response(False, "Email уже занят!")
     else:
@@ -43,6 +44,7 @@ def register():
 # Вход и получение токена
 @users_api.route('/login', methods=['POST'])
 def login():
+    print(request.data)
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
