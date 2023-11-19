@@ -1,60 +1,61 @@
-* {
-  box-sizing: border-box;
-}
+
 body {
-  --main-color1: #1C2657;
-  --main-color2: #7957C2;
-  margin: 0;
-  background: var(--main-color2);
+    --main-color1: #1C2657;
+    --main-color2: #7957C2;
+    --main-color3: #5957C2;
+    margin: 0;
+    background: var(--main-color2);
 }
 
 .svg {
-    filter: drop-shadow(4px 4px 4px black);
+    filter: drop-shadow(4px 4px 4px black 50%);
 }
 
 span {
     color: white;
     font-family: Inter;
     font-size: 50px;
-    text-shadow: 4px 4px 4px black;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 header {
-  width: 100%;
-  height: 199px;
-  background: var(--main-color1);
-  position: fixed;
-  z-index: 4;
-  display: flex;
+    width: 100%;
+    height: 199px;
+    background: var(--main-color1);
+    position: fixed;
+    z-index: 4;
+    display: flex;
 }
 .mini-profile {
-  position: relative;
-  width: calc(100% - 199px - 32px);
-  top: 32px;
-  height: 134px;
+    position: relative;
+    width: calc(100% - 199px - 32px);
+    top: 32px;
+    height: 134px;
 }
 .mini-profile .avatar {
-  position: absolute;
-  width: 134px;
-  height: 134px;
-  right: 0px;
-  border-radius: 50%;
-  box-shadow: 4px 4px 4px 0px black;
+    position: absolute;
+    width: 134px;
+    height: 134px;
+    right: 0px;
+    border-radius: 50%;
+    box-shadow: 4px 4px 4px 0px black;
 }
 .mini-profile span {
-  position: absolute;
-  width: calc(100% - 134px - 32px);
-  height: 50%;
-  right: calc(134px + 32px);
-  border-radius: 50%;
-  text-align: end;
+    position: absolute;
+    width: calc(100% - 134px - 32px);
+    height: 50%;
+    right: calc(134px + 32px);
+    border-radius: 50%;
+    text-align: end;
 }
 .mini-profile .username {
-  top: 50%;
-  font-size: 40px;
+    top: 50%;
+    font-size: 40px;
+    font-weight: 400;
 }
 .mini-profile .name {
     font-size: 50px;
+    font-weight: 500;
 }
 .menu-button {
     position: relative;
@@ -72,13 +73,13 @@ header {
 }
 
 footer {
-  width: 100%;
-  height: 199px;
-  background: var(--main-color1);
-  position: fixed;
-  bottom: 0px;
-  z-index: 4;
-  display: flex;
+    width: 100%;
+    height: 199px;
+    background: var(--main-color1);
+    position: fixed;
+    bottom: 0px;
+    z-index: 4;
+    display: flex;
 }
 .navigate-button {
     position: relative;
@@ -96,7 +97,7 @@ footer {
     position: absolute;
     height: 100%;
     width: 20%;
-    transition: left 150ms;
+    transition: left 150ms ease-out;
 }
 #selector img {
     position: relative;
@@ -110,7 +111,7 @@ footer {
     position: fixed;
     z-index: 6;
     background: var(--main-color1);
-    transition: all 150ms;
+    transition: left 150ms;
     top: 0px;
     left: -900px;
     height: 100vh;
@@ -120,7 +121,7 @@ footer {
     position: fixed;
     z-index: 6;
     background: var(--main-color1);
-    transition: all 150ms;
+    transition: right 150ms;
     top: 0px;
     right: -900px;
     height: 100vh;
@@ -128,13 +129,12 @@ footer {
 }
 .screen-blur {
     position: fixed;
-    z-index: 5;
+    z-index: -1;
     background: black;
-    transition: all 150ms;
+    transition: opacity 100ms;
     height: 100vh;
     width: 100vw;
     opacity: 0;
-    display: none;
 }
 
 .settings-side-panel.opened {
@@ -144,8 +144,8 @@ footer {
     right: 0px;
 }
 .screen-blur.opened {
+    z-index: 5;
     opacity: 0.4;
-    display: block;
 }
 
 .app {
@@ -154,10 +154,220 @@ footer {
 }
 .app .page {
     position: fixed;
+    overflow: scroll;
     width: 100vw;
-    height: 100vh;
-    transition: all 150ms;
+    height: calc(100vh - 199px - 199px);
+    transition: left 150ms ease-out;
 }
 
-.app #home.page {
+.inner-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-header img {
+    width: 570;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+}
+
+.inner-header span {
+    text-align: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.page .blue {
+    background-color: var(--main-color3);
+}
+.page .purple {
+    background-color: var(--main-color2);
+}
+.page > .padding {
+    padding-left: 3.7vw;
+    padding-right: 3.7vw;
+}
+
+.wallet-sum {
+    display: flex;
+    flex-direction: column;
+}
+
+.wallet-sum span {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 130px;
+    font-weight: 600;
+}
+
+button span {
+    font-weight: 700;
+}
+button {
+    display: flex;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+    border: none;
+    background-color: var(--main-color1);
+    height: 160px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+button .svg, span {
+    margin: auto;
+}
+button.wide {
+    height: 230px;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.gradient-bottom-top {
+    background-image:
+        linear-gradient(0deg,  rgba(0, 0, 0, .25) 0%,
+        rgba(0, 0, 0, 0) 100%);
+    height: 30px;
+    width: 100%;
+}
+
+.gradient-top-bottom {
+    background-image:
+        linear-gradient(0deg,  rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, .25) 100%);
+    height: 30px;
+    width: 100%;
+}
+
+.graph-area {
+    display: flex;
+}
+
+.graph {
+    margin: auto;
+}
+
+.graph-income, .graph-expense {
+    position: relative;
+    width: 155px;
+    height: 500px;
+}
+.graph-income > .f {
+    border-radius: 25px 0px 0px 25px;
+    background-color: #FF0101;
+    position: absolute;
+    width: 125px;
+    bottom: 0px;
+}
+.graph-income > .m {
+    border-radius: 0px 25px 25px 25px;
+    background-color: #8FFF00;
+    position: absolute;
+    left: 30px;
+    width: 95px;
+    bottom: 0px;
+}
+.graph-income > .l {
+    border-radius: 25px;
+    background-color: #44FE02;
+    position: absolute;
+    left: 30px;
+    width: 125px;
+    bottom: 0px;
+}
+.graph-expense > .f {
+    border-radius: 0px 25px 25px 0px;
+    background-color: #44FE02;
+    position: absolute;
+    left: 30px;
+    width: 125px;
+    bottom: 0px;
+}
+.graph-expense > .m {
+    border-radius: 25px 0px 25px 25px;
+    background-color: #FF5C00;
+    position: absolute;
+    left: 30px;
+    width: 95px;
+    bottom: 0px;
+}
+.graph-expense > .l {
+    border-radius: 25px;
+    background-color: #FF0101;
+    position: absolute;
+    width: 125px;
+    bottom: 0px;
+}
+
+.graph-month-name {
+    width: 155px;
+    display: flex;
+}
+.graph-month-name > span {
+    font-weight: 500;
+    font-size: 33px;
+    margin: auto;
+}
+
+.category {
+    display: flex;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+    background-color: var(--main-color1);
+    height: 100px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.ratio-bar-background {
+    position: absolute;
+    left: calc(50% - 400px);
+    width: 800px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: rgba(255,255,255,0.4);
+}
+.ratio-bar {
+    position: absolute;
+    left: calc(50% - 400px);
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #44FE02;
+}
+
+.company {
+    display: flex;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+    background-color: var(--main-color1);
+    height: 230px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+.company > .logo {
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 70px;
+    background-color: var(--main-color2);
+    height: 122px;
+    width: 122px;
+    margin: 53px;
+}
+.company > .info {
+    margin: auto;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+.company > .info > .name {
+    margin-left: 0;
+    font-size: 70px;
+}
+.company > .info > .changes {
+    margin-left: 0;
+    font-size: 45px;
 }

@@ -9,11 +9,11 @@
 <body>
 
 <header>
-    <div class="menu-button">
-        <img class="svg" src="./images/menu-button.svg" onclick="toggle_menu('settings-side-panel')" title="">
+    <div class="menu-button" onclick="toggle_menu('settings-side-panel')">
+        <img class="svg" src="./images/menu-button.svg" title="">
     </div>
-    <div class="mini-profile">
-        <img class="avatar" src="./images/mini-avatar.png" alt="avatar" onclick="toggle_menu('profile-side-panel')">
+    <div class="mini-profile" onclick="toggle_menu('profile-side-panel')">
+        <img class="avatar" src="./images/mini-avatar.png" alt="avatar">
         <span class="name">Станислав Федосов</span>
         <span class="username">@b4rb0sss</span>
     </div>
@@ -29,19 +29,337 @@
 
 <div class="app">
     <div class="page" style="left: 0%;" id="home">
-        <span>home</span>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Непотраченные деньги</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>3000,35₽</span>
+            </div>
+            <div style="display: flex; gap: 3.7vw; padding-top: 45px;">
+                <button type="button"><span style="font-size: 45px;">Добавить доход</span></button>
+                <button type="button"><span style="font-size: 45px;">Добавить расход</span></button>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding" style="padding-bottom: 20px;">
+
+            <div class="inner-header">
+                <span>Быстрые действия</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+            <button type="button">
+                <span>Оплата проезда</span>
+            </button>
+            <button type="button">
+                <img class="svg" style="margin-right: 10px;" src="images/miniplus.svg">
+                <span style="margin-left: 10px;">Добавить быстрое действие</span>
+            </button>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Цели</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">Телефон</span>
+                <span style="font-size: 70px;">3245₽ / 19999₽</span>
+            </button>
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">Новая клавиатура</span>
+                <span style="font-size: 70px;">40₽ / 2999₽</span>
+            </button>
+            <button type="button">
+                <img class="svg" style="margin-right: 10px;" src="images/miniplus.svg">
+                <span style="margin-left: 10px;">Добавить Цель</span>
+            </button>
+        </div>
+
     </div>
     <div class="page" style="left: 100%;" id="graph">
-        <span>graph</span>
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Анализ финансов</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+
+            <div class="graph-area">
+                <div class="graph">
+                    <div class="graph-income">
+                        <div class="f" style="height: 16%;"></div>
+                        <div class="l" style="height: 33%;"></div>
+                        <div class="m" style="height: 16%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>Июль</span>
+                    </div>
+                </div>
+                <div class="graph">
+                    <div class="graph-income">
+                        <div class="f" style="height: 16%;"></div>
+                        <div class="l" style="height: 33%;"></div>
+                        <div class="m" style="height: 16%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>Август</span>
+                    </div>
+                </div>
+                <div class="graph">
+                    <div class="graph-income">
+                        <div class="f" style="height: 16%;"></div>
+                        <div class="l" style="height: 33%;"></div>
+                        <div class="m" style="height: 16%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>Сентябрь</span>
+                    </div>
+                </div>
+                <div class="graph">
+                    <div class="graph-expense">
+                        <div class="f" style="height: 16%;"></div>
+                        <div class="l" style="height: 33%;"></div>
+                        <div class="m" style="height: 16%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>Октябрь</span>
+                    </div>
+                </div>
+                <div class="graph">
+                    <div class="graph-income">
+                        <div class="f" style="height: 16%;"></div>
+                        <div class="l" style="height: 33%;"></div>
+                        <div class="m" style="height: 16%;"></div>
+                    </div>
+                    <div class="graph-month-name">
+                        <span>Ноябрь</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding" style="height: 1500px;">
+            <div class="inner-header">
+                <span>Ваши доходы и расходы по категориям</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+            <div style="display: flex; gap: 3.7vw">
+                <div style="width: 50%; height: 1200px; display: flex; flex-direction: column;">
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">Транспорт</span>
+                        <span style="font-size: 40px; color: #44FE02; font-weight: 700;">1000₽</span>
+                    </div>
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">Транспорт</span>
+                        <span style="font-size: 40px; color: #44FE02; font-weight: 700;">1000₽</span>
+                    </div>
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">Транспорт</span>
+                        <span style="font-size: 40px; color: #44FE02; font-weight: 700;">1000₽</span>
+                    </div>
+                </div>
+                <div style="width: 50%; height: 1200px; display: flex; flex-direction: column;">
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">Транспорт</span>
+                        <span style="font-size: 40px; color: #FF0101; font-weight: 700;">1000₽</span>
+                    </div>
+                    <div class="category">
+                        <span style="font-size: 40px; font-weight: 700;">Транспорт</span>
+                        <span style="font-size: 40px; color: #FF0101; font-weight: 700;">1000₽</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
     <div class="page" style="left: 200%;" id="personal-suggestions">
-        <span>ps</span>
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding" style="height: 480px;">
+            <div class="inner-header">
+                <span>Оценка грамотности</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>Хорошо</span>
+            </div>
+            <div style="padding-top: 45px;">
+                <div class="ratio-bar-background"></div>
+                <div class="ratio-bar" style="width: 600px;"></div>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding">
+
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Финансовая грамотность оценивается на основе ваших расходов. Следите за нами и придерживайтесь общих советов распоряжения средствами.</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Личные советы</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">Делай что-то то и не делай что-то иное будеш молодцом</span>
+            </button>
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">Делай что-то то и не делай что-то иное будеш молодцом</span>
+            </button>
+            <button class="wide" type="button">
+                <span style="font-size: 45px;">Делай что-то то и не делай что-то иное будеш молодцом</span>
+            </button>
+        </div>
+
     </div>
     <div class="page" style="left: 300%;" id="investment-portfolio">
-        <span>ip</span>
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding" style="height: 340px;">
+            <div class="inner-header">
+                <span>Всего вы инвестировали</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+            <div class="wallet-sum">
+                <span>425,63₽</span>
+            </div>
+        </div>
+
+        <div class="gradient-bottom-top"></div>
+
+        <div class="blue padding">
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Инвестируйте с умом, не вкладывайте все деньги в один сектор, разделяйте инвестиции в разные компании.</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="inner-header">
+                <span>Отслеживаемые акции</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+
+            <div class="inner-header">
+                <span>Популярные акции</span>
+                <img class="svg" src="images/divider.svg">
+            </div>
+
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Сбербанк</span>
+                    <span class="changes" style="color: #44FE02;">100₽ (+3%)</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="page" style="left: 400%;" id="rating">
-        <span>rating</span>
+
+        <div class="blue padding">
+            <div class="inner-header" style="padding-top: 15px; padding-bottom: 25px;">
+                <span>Покажите своим друзьям как грамотно вы распоряжаетесь средствами</span>
+            </div>
+        </div>
+
+        <div class="gradient-top-bottom"></div>
+
+        <div class="purple padding">
+            <div class="purple padding">
+                <div class="inner-header">
+                    <span>Рейтинг друзей</span>
+                    <img class="svg" src="images/divider.svg">
+                </div>
+            </div>
+
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Мишка Фреде</span>
+                    <span class="changes" style="color: #44FE02;">Крутяк</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Алег Теньков</span>
+                    <span class="changes" style="color: #44FE02;">Крутяк</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Вы</span>
+                    <span class="changes" style="color: #44FE02;">Хорошо</span>
+                </div>
+            </div>
+            <div class="company">
+                <div class="logo"></div>
+                <div class="info">
+                    <span class="name">Мяу мяу</span>
+                    <span class="changes" style="color: #44FE02;">Плохо</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

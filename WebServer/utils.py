@@ -67,7 +67,7 @@ def get_user_ratio(ratio):
 
     result_category = None
     for key, value in categories_dict.items():
-        start, end = map(float, key.split('-'))
+        end, start = map(float, key.split('-'))
         if start <= ratio <= end:
             result_category = value
             break
