@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, send_file
+from flask_cors import CORS
 
 from home_page import home_page
 from users import users_api
@@ -11,6 +12,7 @@ from invest_page import invest_page
 from models import db
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
 db.init_app(app)
 app.register_blueprint(home_page)
@@ -22,17 +24,14 @@ app.register_blueprint(page_3)
 app.register_blueprint(invest_page)
 
 
-"""
-db_created = False
+@app.route('/login', methods=['GET'])
+def login():
+    send_file('/html/login.html')
 
 
-@app.before_request
-def create_tables():
-    global db_created
-    if not db_created:
-        db.create_all()
-        db_created = True
-"""
+@app.route('/', methods=['GET'])
+def index():
+    send_file('/html/home.html')
 
 
 if __name__ == '__main__':

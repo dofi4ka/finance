@@ -254,7 +254,7 @@ button.wide {
 .graph-income, .graph-expense {
     position: relative;
     width: 155px;
-    height: 500px;
+    height: 800px;
 }
 .graph-income > .f {
     border-radius: 25px 0px 0px 25px;

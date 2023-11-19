@@ -1,0 +1,50 @@
+body {
+    --main-color1: #1C2657;
+    --main-color2: #7957C2;
+    --main-color3: #5957C2;
+    margin: 0;
+    background: var(--main-color1);
+}
+
+.login {
+    padding-top: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+}
+
+.register {
+    padding-bottom: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+}
+
+input {
+    width: calc(100% - 60px);
+    height: 100px;
+    background-color: white;
+    color: black;
+    font-family: Inter;
+    font-size: 50px;
+    border-radius: 30px;
+    border: none;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+button {
+    width: 100%;
+    height: 120px;
+    background-color: white;
+    color: black;
+    font-family: Inter;
+    font-size: 65px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
