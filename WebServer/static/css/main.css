@@ -11,6 +11,11 @@ body {
     filter: drop-shadow(4px 4px 4px black 50%);
 }
 
+.side-menu-row {
+    display: flex;
+    margin: 50px;
+}
+
 input {
     width: calc(100% - 160px);
     height: 100px;

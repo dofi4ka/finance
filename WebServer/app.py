@@ -102,9 +102,13 @@ def index():
                                    ratio_bar=0,
                                    personal_suggestions=["Мы пока ничего не можем предложить"],
                                    is_followed=False,
-                                   popular_investments=[{"logo": None, "name": None, "change": None}],
+                                   popular_investments=[
+                                       {"logo": "", "name": "Роснефть", "change": "583.30₽ (+1,84%)"},
+                                       {"logo": "", "name": "Лукойл", "change": "7 225.50₽ (+1,26%)"},
+                                       {"logo": "", "name": "Сбербанк", "change": "281.60₽ (+0,68%)"},
+                                   ],
                                    amount_investments=f"{balance}₽",
-                                   friends=[{"logo": None, "name": None, "ratio_str": None}]
+                                   friends=[{"logo": "", "name": "У вас пока нет друзей", "ratio_str": ""}]
                                    )
     return redirect("/login")
 

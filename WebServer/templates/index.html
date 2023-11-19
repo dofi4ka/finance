@@ -12,7 +12,7 @@
     <div class="menu-button" onclick="toggle_menu('settings-side-panel')">
         <img class="svg" src="/static/images/menu-button.svg" title="">
     </div>
-    <div class="mini-profile" onclick="toggle_menu('profile-side-panel')">
+    <div class="mini-profile" onclick="">
         <img class="avatar" src="/static/images/mini-avatar.png" alt="avatar">
         <span class="name">{{name}}</span>
         <span class="username">{{username}}</span>
@@ -23,6 +23,11 @@
 <div class="settings-side-panel" id="settings-side-panel">
     <div class="menu-button" style="left: 700px;">
         <img class="svg" src="/static/images/menu-button.svg" onclick="toggle_menu('settings-side-panel')" title="">
+    </div>
+    <div style="display: flex; flex-direction: column">
+        <div class="side-menu-row">
+            <span>Настройки</span>
+        </div>
     </div>
 </div>
 <div class="profile-side-panel" id="profile-side-panel">
