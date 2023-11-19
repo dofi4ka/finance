@@ -20,7 +20,7 @@ input {
     font-size: 50px;
     border-radius: 30px;
     border: none;
-    margin-bottom: 50px;
+    margin: 50px;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -33,7 +33,7 @@ input {
     border-radius: 30px;
     border: none;
     font-weight: 700;
-    margin-bottom: 80px;
+    margin: 80px;
     padding-left: 30px;
     padding-right: 30px;
     text-align: center;
