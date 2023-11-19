@@ -22,10 +22,11 @@ def add_user(username, password, email, name):
 # Регистрация и получение токена
 @users_api.route('/register', methods=['POST'])
 def register():
-    username = request.args.get('username')
-    password = request.args.get('password')
-    email = request.args.get('email')
-    name = request.args.get('name')
+    data = request.json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+    name = data.get('name')
 
     username_query = Users.query.filter_by(username=username).first()
     email_query = Users.query.filter_by(email=email).first()
@@ -41,10 +42,11 @@ def register():
 
 
 # Вход и получение токена
-@users_api.route('/login', methods=['GET'])
+@users_api.route('/login', methods=['POST'])
 def login():
-    username = request.args.get('username')
-    password = request.args.get('password')
+    data = request.json()
+    username = data.get('username')
+    password = data.get('password')
 
     password_hash = hash_password(password)
     user = Users.query.filter_by(username=username, password=password_hash).first()
