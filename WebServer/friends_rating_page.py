@@ -27,7 +27,7 @@ def get_home_page():
     friends_dict = dict(
         sorted(friends_dict.items(), key=lambda item: item[1], reverse=True))
     for friend in friends_dict.keys():
-        friends_dict[friend] = get_user_ratio(friends_list[fr])
+        friends_dict[friend] = get_user_ratio(friends_list[friend])
 
 
 
