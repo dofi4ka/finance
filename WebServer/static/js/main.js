@@ -86,7 +86,7 @@ function income() {
 }
 
 function expense() {
-    var amount = -document.getElementById('income-bottom-panel-amount').value;
+    var amount = -parseInt(document.getElementById('income-bottom-panel-amount').value);
     var category = document.getElementById('income-bottom-panel-category').value;
 
     postData("/transactions/add", {amount: amount, category: category}).then((data) => {
