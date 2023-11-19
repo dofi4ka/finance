@@ -72,7 +72,9 @@ def index():
             m = max(incomes, expenses)
             if m:
                 h1 = incomes / m * 100
+                if h1 < 4: h1 = 4
                 h2 = expenses / m * 100
+                if h2 < 4: h2 = 4
             else:
                 h1, h2 = 4, 4
 
