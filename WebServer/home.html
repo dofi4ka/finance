@@ -2,18 +2,18 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="./css/main.css" rel="stylesheet" />
-    <script src="./js/main.js"></script>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <script src="/static/js/main.js"></script>
     <title>Document</title>
 </head>
 <body>
 
 <header>
     <div class="menu-button" onclick="toggle_menu('settings-side-panel')">
-        <img class="svg" src="./images/menu-button.svg" title="">
+        <img class="svg" src="/static/images/menu-button.svg" title="">
     </div>
     <div class="mini-profile" onclick="toggle_menu('profile-side-panel')">
-        <img class="avatar" src="./images/mini-avatar.png" alt="avatar">
+        <img class="avatar" src="/static/images/mini-avatar.png" alt="avatar">
         <span class="name">Станислав Федосов</span>
         <span class="username">@b4rb0sss</span>
     </div>
@@ -22,7 +22,7 @@
 <div class="screen-blur" id="screen-blur" onclick="close_all()"></div>
 <div class="settings-side-panel" id="settings-side-panel">
     <div class="menu-button" style="left: 700px;">
-        <img class="svg" src="./images/menu-button.svg" onclick="toggle_menu('settings-side-panel')" title="">
+        <img class="svg" src="/static/images/menu-button.svg" onclick="toggle_menu('settings-side-panel')" title="">
     </div>
 </div>
 <div class="profile-side-panel" id="profile-side-panel">
@@ -37,7 +37,7 @@
         <div class="purple padding">
             <div class="inner-header">
                 <span>Непотраченные деньги</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
             <div class="wallet-sum">
                 <span>3000,35₽</span>
@@ -54,13 +54,13 @@
 
             <div class="inner-header">
                 <span>Быстрые действия</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
             <button type="button">
                 <span>Оплата проезда</span>
             </button>
             <button type="button">
-                <img class="svg" style="margin-right: 10px;" src="images/miniplus.svg">
+                <img class="svg" style="margin-right: 10px;" src="/static/images/miniplus.svg">
                 <span style="margin-left: 10px;">Добавить быстрое действие</span>
             </button>
         </div>
@@ -70,7 +70,7 @@
         <div class="purple padding">
             <div class="inner-header">
                 <span>Цели</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
 
             <button class="wide" type="button">
@@ -82,7 +82,7 @@
                 <span style="font-size: 70px;">40₽ / 2999₽</span>
             </button>
             <button type="button">
-                <img class="svg" style="margin-right: 10px;" src="images/miniplus.svg">
+                <img class="svg" style="margin-right: 10px;" src="/static/images/miniplus.svg">
                 <span style="margin-left: 10px;">Добавить Цель</span>
             </button>
         </div>
@@ -94,7 +94,7 @@
         <div class="purple padding">
             <div class="inner-header">
                 <span>Анализ финансов</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
 
             <div class="graph-area">
@@ -158,7 +158,7 @@
         <div class="blue padding" style="height: 1500px;">
             <div class="inner-header">
                 <span>Ваши доходы и расходы по категориям</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
             <div style="display: flex; gap: 3.7vw">
                 <div style="width: 50%; height: 1200px; display: flex; flex-direction: column;">
@@ -196,7 +196,7 @@
         <div class="purple padding" style="height: 480px;">
             <div class="inner-header">
                 <span>Оценка грамотности</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
             <div class="wallet-sum">
                 <span>Хорошо</span>
@@ -221,7 +221,7 @@
         <div class="purple padding">
             <div class="inner-header">
                 <span>Личные советы</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
 
             <button class="wide" type="button">
@@ -242,7 +242,7 @@
         <div class="purple padding" style="height: 340px;">
             <div class="inner-header">
                 <span>Всего вы инвестировали</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
             <div class="wallet-sum">
                 <span>425,63₽</span>
@@ -262,7 +262,7 @@
         <div class="purple padding">
             <div class="inner-header">
                 <span>Отслеживаемые акции</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
 
             <div class="company">
@@ -289,7 +289,7 @@
 
             <div class="inner-header">
                 <span>Популярные акции</span>
-                <img class="svg" src="images/divider.svg">
+                <img class="svg" src="/static/images/divider.svg">
             </div>
 
             <div class="company">
@@ -329,7 +329,7 @@
             <div class="purple padding">
                 <div class="inner-header">
                     <span>Рейтинг друзей</span>
-                    <img class="svg" src="images/divider.svg">
+                    <img class="svg" src="/static/images/divider.svg">
                 </div>
             </div>
 
@@ -367,22 +367,22 @@
 
 <footer>
     <div class="navigate-button" onclick="select(0);">
-        <img class="svg" src="./images/home.svg" title="">
+        <img class="svg" src="/static/images/home.svg" title="">
     </div>
     <div class="navigate-button" onclick="select(1);">
-        <img class="svg" src="./images/graph.svg" title="">
+        <img class="svg" src="/static/images/graph.svg" title="">
     </div>
     <div class="navigate-button" onclick="select(2);">
-        <img class="svg" src="./images/personal-suggestions.svg" title="">
+        <img class="svg" src="/static/images/personal-suggestions.svg" title="">
     </div>
     <div class="navigate-button" onclick="select(3);">
-        <img class="svg" src="./images/investment-portfolio.svg" title="">
+        <img class="svg" src="/static/images/investment-portfolio.svg" title="">
     </div>
     <div class="navigate-button" onclick="select(4);">
-        <img class="svg" src="./images/rating.svg" title="">
+        <img class="svg" src="/static/images/rating.svg" title="">
     </div>
     <div id="selector">
-        <img class="svg" style="left: 0%;" src="./images/selector-line.svg" title="">
+        <img class="svg" style="left: 0%;" src="/static/images/selector-line.svg" title="">
     </div>
 </footer>
 

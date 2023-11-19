@@ -8,7 +8,6 @@ function login() {
 
     var response = fetch('/users/login', {
         method: 'POST',
-        mode: "no-cors",
         headers: {
             'Access': 'application/json',
             'Content-Type': 'application/json'

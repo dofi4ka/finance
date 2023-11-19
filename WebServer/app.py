@@ -26,12 +26,12 @@ app.register_blueprint(invest_page)
 
 @app.route('/login', methods=['GET'])
 def login():
-    send_file('/html/login.html')
+    return send_file('login.html')
 
 
 @app.route('/', methods=['GET'])
 def index():
-    send_file('/html/home.html')
+    return send_file('home.html')
 
 
 if __name__ == '__main__':
