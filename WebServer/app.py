@@ -66,6 +66,11 @@ def index():
                     c_add(c_expenses, -transaction.amount, transaction.category)
 
             m = max(incomes, expenses)
+            if m:
+                h1 = incomes / m * 100
+                h2 = expenses / m * 100
+            else:
+                h1, h2 = 4, 4
 
             return render_template('template.html',
                                    name=user.name,
@@ -79,7 +84,7 @@ def index():
                                        {"class": "graph-income", "h1": 4, "h2": 4, "month": "Сентябрь"},
                                        {"class": "graph-income", "h1": 4, "h2": 4, "month": "Октябрь"},
                                        {"class": "graph-income" if balance > 0 else "graph-expense",
-                                        "h1": incomes / m * 100, "h2": expenses / m * 100, "month": "Ноябрь"}
+                                        "h1": h1, "h2": h2, "month": "Ноябрь"}
                                    ],
                                    c_incomes=c_incomes,
                                    c_expenses=c_expenses,
