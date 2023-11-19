@@ -12,7 +12,7 @@ body {
 }
 
 input {
-    width: calc(100% - 60px);
+    width: calc(100% - 160px);
     height: 100px;
     background-color: white;
     color: black;
@@ -25,7 +25,7 @@ input {
     padding-right: 30px;
 }
 .send-button {
-    width: 100%;
+    width: calc(100% - 200px);
     background-color: white;
     color: black;
     font-family: Inter;
@@ -33,11 +33,10 @@ input {
     border-radius: 30px;
     border: none;
     font-weight: 700;
-    margin: 80px;
+    margin: 70px;
     padding-left: 30px;
     padding-right: 30px;
     text-align: center;
-
 }
 
 span {
