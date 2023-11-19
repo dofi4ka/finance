@@ -85,7 +85,7 @@ function income() {
     });
 }
 
-function expose() {
+function expense() {
     var amount = -document.getElementById('income-bottom-panel-amount').value;
     var category = document.getElementById('income-bottom-panel-category').value;
 
