@@ -27,17 +27,19 @@ app.register_blueprint(invest_page)
 
 @app.route('/login', methods=['GET'])
 def login():
-    if "Authorisation" in request.cookies:
-        if token_decode(request.cookies):
+    token = request.cookies.get("Authorisation")
+    if token:
+        user_id = token_decode(token)
+        if user_id:
             return redirect("/")
     return send_file('login.html')
 
 
 @app.route('/', methods=['GET'])
 def index():
-    print(request.cookies)
-    if "Authorisation" in request.cookies:
-        user_id = token_decode(request.cookies)
+    token = request.cookies.get("Authorisation")
+    if token:
+        user_id = token_decode(token)
         if user_id:
             user = Users.query.filter_by(user_id=user_id).first()
             transactions = Transactions.query.filter_by(user_id=user_id).all()
