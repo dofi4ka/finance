@@ -60,7 +60,7 @@ def login():
         return response(False, "Invalid password or username"), 401
 
 
-@users_api.route('/add-target', methods=['POST'])
+"""@users_api.route('/add-target', methods=['POST'])
 def register():
     token = request.cookies.get("Authorisation")
     if token:
@@ -83,7 +83,7 @@ def register():
                 return response(False, "Email уже занят!")
             else:
                 return response(False, "Username уже занят!")
-
+"""
 
 # Получаем список пользователей. Функция временная на период теста
 @users_api.route('/get_users', methods=['GET'])
